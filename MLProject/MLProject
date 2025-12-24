@@ -1,6 +1,6 @@
-name: workflow-ci-mlflow
+name: heart-disease-mlflow
 
-python_env: python_env.yaml
+conda_env: conda.yaml
 
 entry_points:
   main:
