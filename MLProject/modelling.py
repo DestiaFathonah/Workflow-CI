@@ -40,6 +40,9 @@ with mlflow.start_run():
     acc = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
 
-    print("Accuracy:", acc)
+    mlflow.log_metric("accuracy_manual", acc)
+    mlflow.log_metric("f1_score_manual", f1)
 
+
+    print("Accuracy:", acc)
     print("F1 Score:", f1)
