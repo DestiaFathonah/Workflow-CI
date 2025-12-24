@@ -2,8 +2,8 @@
 import mlflow
 import mlflow.sklearn
 
-mlflow.set_tracking_uri("http://localhost:5000")
-mlflow.set_experiment("Default")
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_experiment("heart-disease-classification")
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -41,4 +41,5 @@ with mlflow.start_run():
     f1 = f1_score(y_test, y_pred)
 
     print("Accuracy:", acc)
+
     print("F1 Score:", f1)
