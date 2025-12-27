@@ -2,7 +2,7 @@
 import mlflow
 import mlflow.sklearn
 
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_tracking_url("http://127.0.0.1:5000")
 mlflow.set_experiment("heart-disease-classification")
 
 import pandas as pd
