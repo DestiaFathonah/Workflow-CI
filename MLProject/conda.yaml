@@ -1,7 +1,10 @@
-name: heart-disease-cl
-
-conda_env: conda.yaml
-
-entry_points:
-  main:
-    command: "python modelling.py"
+name: mlflow-env
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - mlflow
+      - scikit-learn
+      - pandas
