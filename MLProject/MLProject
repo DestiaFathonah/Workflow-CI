@@ -1,4 +1,4 @@
-name: heart-disease-mlflow
+name: heart-disease-classification
 
 conda_env: conda.yaml
 
