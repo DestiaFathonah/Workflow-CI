@@ -1,4 +1,4 @@
-name: heart-disease-classification
+name: heart-disease-ci
 
 conda_env: conda.yaml
 
