@@ -1,9 +1,10 @@
-name: CI - MLflow Retraining
+name: MLflow CI Training
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   train:
@@ -11,18 +12,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mlflow pandas scikit-learn
+      - name: Install MLflow
+        run: pip install mlflow
 
       - name: Run MLflow Project
+        env:
+          MLFLOW_TRACKING_URI: file:///home/runner/mlruns
         run: |
-          mlflow run MLProject --env-manager=local
+          mlflow run MLProject
