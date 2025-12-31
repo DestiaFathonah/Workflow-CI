@@ -2,8 +2,7 @@ name: MLflow CI Training
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -11,19 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+    - name: Set up Conda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-activate-base: true
+        python-version: 3.12
 
-      - name: Install MLflow
-        run: pip install mlflow
+    - name: Install MLflow
+      shell: bash -l {0}
+      run: |
+        pip install mlflow scikit-learn pandas matplotlib
 
-      - name: Run MLflow Project
-        env:
-          MLFLOW_TRACKING_URI: file:///home/runner/mlruns
-        run: |
-          mlflow run MLProject
+    - name: Run MLflow Project
+      shell: bash -l {0}
+      run: |
+        mlflow run MLProject
