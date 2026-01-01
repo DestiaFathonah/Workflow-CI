@@ -1,30 +1,27 @@
-name: MLflow CI
+name: MLflow CI Training
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   train:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          auto-update-conda: true
-          python-version: 3.10
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
 
-      - name: Install MLflow
-        shell: bash -l {0}
-        run: |
-          pip install mlflow
+    - name: Install dependencies
+      run: |
+        pip install mlflow scikit-learn pandas
 
-      - name: Run MLflow Project
-        shell: bash -l {0}
-        run: |
-          mlflow run MLProject
+    - name: Run MLflow Project (NO CONDA)
+      run: |
+        cd MLProject
+        mlflow run . --env-manager=local
