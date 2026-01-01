@@ -6,5 +6,6 @@ dependencies:
   - pip
   - pip:
       - mlflow
-      - pandas
       - scikit-learn
+      - pandas
+      - numpy
